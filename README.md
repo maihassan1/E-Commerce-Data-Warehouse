@@ -1,4 +1,4 @@
-E-commerce Data Warehouse
+
 # E-commerce Data Warehouse
 
 ## 📌 Project Overview
