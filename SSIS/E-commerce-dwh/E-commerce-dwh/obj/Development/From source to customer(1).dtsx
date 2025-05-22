@@ -1,0 +1,2497 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/7/2025 6:54:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-MIQOPLK"
+  DTS:CreatorName="DESKTOP-MIQOPLK\DELL"
+  DTS:DTSID="{8B932AEE-330B-4CAA-B53D-650DA3D2B6A2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="From source to customer"
+  DTS:PackageType="5"
+  DTS:VersionBuild="51"
+  DTS:VersionGUID="{ED8F8E59-3D85-4D09-BF8E-0D63A31E0169}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Customer]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{AD87F0DC-7547-43A3-B276-C3ED1B386322}"
+      DTS:ObjectName="Customer">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\DELL\Downloads\archive (2)\customer.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="customer_id"
+              DTS:DTSID="{9BEB276F-588E-4099-8386-4AEEF715A973}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="first_name"
+              DTS:DTSID="{3CCDD187-CD53-4C6B-B7C8-FFF3D167A9B9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="last_name"
+              DTS:DTSID="{307CC5AF-BA8E-40BF-925C-F7E29E2EDE83}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="email"
+              DTS:DTSID="{C40E0D86-F34E-4FA2-9646-EC46BCBE511E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="country"
+              DTS:DTSID="{123EE047-9007-4A11-A92E-6A474ACD5973}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DDA6D077-DCA7-4E00-8A28-562564BE29DE}"
+      DTS:ObjectName="DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-MIQOPLK\SQLEXPRESS;Initial Catalog=E_Commerce_DW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-From source to customer-{DDA6D077-DCA7-4E00-8A28-562564BE29DE}DESKTOP-MIQOPLK\SQLEXPRESS.E_Commerce_DW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SRC]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8773F4AA-636B-498A-88B1-0B824C80DF26}"
+      DTS:ObjectName="SRC">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-MIQOPLK\SQLEXPRESS;Initial Catalog=E_Commerce;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-From source to customer-{8773F4AA-636B-498A-88B1-0B824C80DF26}DESKTOP-MIQOPLK\SQLEXPRESS.E_Commerce;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Get Last Extract date"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{79B4CB19-5F73-4A6F-86DB-C86A152F28B8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Last Extract date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8773F4AA-636B-498A-88B1-0B824C80DF26}"
+          SQLTask:SqlStatementSource="SELECT last_extract_date&#xA;FROM STG.Conf_Table&#xA;WHERE Table_Name = 'Customer';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\load customer_dim"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{79B9E4C1-5A79-4101-9BDD-CBF8067870AC}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load customer_dim"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\load customer_dim\Conditional Split 1"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\load customer_dim\Conditional Split 1.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\load customer_dim\Conditional Split 1.Inputs[Conditional Split Input].Columns[country]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="country"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[country]" />
+                    <inputColumn
+                      refId="Package\load customer_dim\Conditional Split 1.Inputs[Conditional Split Input].Columns[dim_country]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="dim_country"
+                      lineageId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_country]" />
+                    <inputColumn
+                      refId="Package\load customer_dim\Conditional Split 1.Inputs[Conditional Split Input].Columns[customer_email]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="customer_email"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_email]" />
+                    <inputColumn
+                      refId="Package\load customer_dim\Conditional Split 1.Inputs[Conditional Split Input].Columns[dim_email]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="dim_email"
+                      lineageId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_email]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load customer_dim\Conditional Split 1.Outputs[changed]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="changed"
+                  synchronousInputId="Package\load customer_dim\Conditional Split 1.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[country]} != #{Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_country]} || #{Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_email]} != #{Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_email]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">country != dim_country || customer_email != dim_email</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\load customer_dim\Conditional Split 1.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\load customer_dim\Conditional Split 1.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\load customer_dim\Conditional Split 1.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\load customer_dim\Conditional Split 1.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load customer_dim\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load customer_dim\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load customer_dim\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\load customer_dim\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load customer_dim\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\load customer_dim\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load customer_dim\Derived Column.Outputs[Derived Column Output].Columns[is_last]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\load customer_dim\Derived Column.Outputs[Derived Column Output].Columns[is_last]"
+                      name="is_last"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\load customer_dim\Derived Column.Outputs[Derived Column Output].Columns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\load customer_dim\Derived Column.Outputs[Derived Column Output].Columns[create_timestamp]"
+                      name="create_timestamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\load customer_dim\Derived Column.Outputs[Derived Column Output].Columns[update_timestamp]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\load customer_dim\Derived Column.Outputs[Derived Column Output].Columns[update_timestamp]"
+                      name="update_timestamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBDATE)"9999-12-31"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBDATE)"9999-12-31"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\load customer_dim\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\load customer_dim\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load customer_dim\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load customer_dim\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load customer_dim\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT *
+
+FROM DWH.D_Customer
+
+WHERE is_last = 1;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT *
+
+FROM DWH.D_Customer
+
+WHERE is_last = 1;) [refTable]
+where [refTable].[src_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="customer_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="src_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="first_name" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="last_name" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="customer_email" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="country" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="is_last" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="create_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="update_timestamp" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load customer_dim\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\load customer_dim\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\load customer_dim\Lookup.Inputs[Lookup Input].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">src_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\load customer_dim\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_key]"
+                      name="dim_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">customer_key</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_country]"
+                      name="dim_country"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">country</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_email]"
+                      name="dim_email"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">customer_email</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\load customer_dim\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\load customer_dim\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\load customer_dim\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\load customer_dim\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load customer_dim\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load customer_dim\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load customer_dim\OLE DB Command 1"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command 1"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE DWH.D_Customer
+SET is_last = 0, update_timestamp = GETDATE()
+WHERE customer_key = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load customer_dim\OLE DB Command 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\load customer_dim\OLE DB Command 1.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\load customer_dim\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[dim_key]"
+                      cachedDataType="i4"
+                      cachedName="dim_key"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_key]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load customer_dim\OLE DB Command 1.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\load customer_dim\OLE DB Command 1.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\load customer_dim\OLE DB Command 1.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\load customer_dim\OLE DB Command 1.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load customer_dim\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DWH].[D_Customer]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load customer_dim\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[first_name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="first_name"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[first_name]" />
+                    <inputColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[last_name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="last_name"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[last_name]" />
+                    <inputColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customer_email]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="customer_email"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_email]"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[customer_email]" />
+                    <inputColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[country]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="country"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[country]" />
+                    <inputColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[is_last]"
+                      cachedDataType="i4"
+                      cachedName="is_last"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[is_last]"
+                      lineageId="Package\load customer_dim\Derived Column.Outputs[Derived Column Output].Columns[is_last]" />
+                    <inputColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[update_timestamp]"
+                      cachedDataType="dbDate"
+                      cachedName="update_timestamp"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[update_timestamp]"
+                      lineageId="Package\load customer_dim\Derived Column.Outputs[Derived Column Output].Columns[update_timestamp]" />
+                    <inputColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      lineageId="Package\load customer_dim\Derived Column.Outputs[Derived Column Output].Columns[create_timestamp]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_key]"
+                      dataType="i4"
+                      name="customer_key" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[src_id]"
+                      dataType="i4"
+                      name="src_id" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="first_name" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="last_name" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_email]"
+                      dataType="wstr"
+                      length="255"
+                      name="customer_email" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      dataType="wstr"
+                      length="100"
+                      name="country" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[is_last]"
+                      dataType="bool"
+                      name="is_last" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      name="create_timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[update_timestamp]"
+                      dataType="dbTimeStamp"
+                      name="update_timestamp" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load customer_dim\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load customer_dim\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[STG].[Customer]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load customer_dim\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[first_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      length="255"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[first_name]"
+                      name="first_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[last_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      length="255"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[last_name]"
+                      name="last_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[customer_email]"
+                      length="255"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_email]"
+                      name="customer_email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[country]"
+                      length="100"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[country]"
+                      name="country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[create_timestamp]"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[create_timestamp]"
+                      name="create_timestamp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="first_name" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="last_name" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[customer_email]"
+                      dataType="wstr"
+                      length="255"
+                      name="customer_email" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[country]"
+                      dataType="wstr"
+                      length="100"
+                      name="country" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      name="create_timestamp" />
+                    <externalMetadataColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      dataType="i4"
+                      name="customer_id" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[first_name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[first_name]"
+                      name="first_name" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[last_name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[last_name]"
+                      name="last_name" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[customer_email]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[customer_email]"
+                      name="customer_email" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[country]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[country]"
+                      name="country" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[create_timestamp]"
+                      name="create_timestamp" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load customer_dim\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\load customer_dim\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 1].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[customer_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 1].Columns[first_name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="first_name"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[first_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[first_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 1].Columns[last_name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="last_name"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[last_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[last_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 1].Columns[customer_email]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="customer_email"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_email]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[customer_email]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 1].Columns[country]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="country"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 1].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 1].Columns[dim_key]"
+                      cachedDataType="i4"
+                      cachedName="dim_key"
+                      lineageId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_key]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[dim_key]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 1].Columns[dim_country]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="dim_country"
+                      lineageId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[dim_country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 1].Columns[dim_email]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="dim_email"
+                      lineageId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output].Columns[dim_email]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[dim_email]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\load customer_dim\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 2].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[customer_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 2].Columns[first_name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="first_name"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[first_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[first_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 2].Columns[last_name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="last_name"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[last_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[last_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 2].Columns[customer_email]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="customer_email"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_email]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[customer_email]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 2].Columns[country]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="country"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\load customer_dim\Union All.Inputs[Union All Input 2].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      lineageId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output].Columns[create_timestamp]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[create_timestamp]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\load customer_dim\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load customer_dim\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[customer_id]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[first_name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[first_name]"
+                      name="first_name" />
+                    <outputColumn
+                      refId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[last_name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[last_name]"
+                      name="last_name" />
+                    <outputColumn
+                      refId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[customer_email]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[customer_email]"
+                      name="customer_email" />
+                    <outputColumn
+                      refId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[country]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[country]"
+                      name="country" />
+                    <outputColumn
+                      refId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[active]"
+                      codePage="1256"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[active]"
+                      name="active" />
+                    <outputColumn
+                      refId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[create_timestamp]"
+                      name="create_timestamp" />
+                    <outputColumn
+                      refId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[dim_key]"
+                      dataType="i4"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[dim_key]"
+                      name="dim_key" />
+                    <outputColumn
+                      refId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[dim_country]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[dim_country]"
+                      name="dim_country" />
+                    <outputColumn
+                      refId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[dim_email]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\load customer_dim\Union All.Outputs[Union All Output 1].Columns[dim_email]"
+                      name="dim_email" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\load customer_dim.Paths[changed]"
+              endId="Package\load customer_dim\OLE DB Command 1.Inputs[OLE DB Command Input]"
+              name="changed"
+              startId="Package\load customer_dim\Conditional Split 1.Outputs[changed]" />
+            <path
+              refId="Package\load customer_dim.Paths[Derived Column Output]"
+              endId="Package\load customer_dim\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\load customer_dim\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\load customer_dim.Paths[Lookup Match Output]"
+              endId="Package\load customer_dim\Conditional Split 1.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\load customer_dim\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\load customer_dim.Paths[Lookup No Match Output]"
+              endId="Package\load customer_dim\Union All.Inputs[Union All Input 2]"
+              name="Lookup No Match Output"
+              startId="Package\load customer_dim\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\load customer_dim.Paths[OLE DB Command Output]"
+              endId="Package\load customer_dim\Union All.Inputs[Union All Input 1]"
+              name="OLE DB Command Output"
+              startId="Package\load customer_dim\OLE DB Command 1.Outputs[OLE DB Command Output]" />
+            <path
+              refId="Package\load customer_dim.Paths[OLE DB Source Output]"
+              endId="Package\load customer_dim\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\load customer_dim\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\load customer_dim.Paths[Union All Output 1]"
+              endId="Package\load customer_dim\Derived Column.Inputs[Derived Column Input]"
+              name="Union All Output 1"
+              startId="Package\load customer_dim\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load stg table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{BE71B935-5C8D-47F2-97D7-621D174A66F7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load stg table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load stg table\Add Time Stamp"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add Time Stamp"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load stg table\Add Time Stamp.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load stg table\Add Time Stamp.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load stg table\Add Time Stamp.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load stg table\Add Time Stamp.Outputs[Derived Column Output].Columns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load stg table\Add Time Stamp.Outputs[Derived Column Output].Columns[create_timestamp]"
+                      name="create_timestamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load stg table\Add Time Stamp.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load stg table\Add Time Stamp.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load stg table\Add Time Stamp.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load stg table\Add Time Stamp.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load stg table\Add Time Stamp.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load stg table\Add Time Stamp.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load stg table\Customer src"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Customer src"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[customer]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load stg table\Customer src.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SRC]"
+                  connectionManagerRefId="Package.ConnectionManagers[SRC]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[first_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      length="255"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[first_name]"
+                      name="first_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[last_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      length="255"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[last_name]"
+                      name="last_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].ExternalColumns[email]"
+                      length="255"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[email]"
+                      name="email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].ExternalColumns[country]"
+                      length="100"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[country]"
+                      name="country"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      dataType="i4"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="first_name" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="last_name" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].ExternalColumns[email]"
+                      dataType="wstr"
+                      length="255"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].ExternalColumns[country]"
+                      dataType="wstr"
+                      length="100"
+                      name="country" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      dataType="i4"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[first_name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[first_name]"
+                      name="first_name" />
+                    <outputColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[last_name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[last_name]"
+                      name="last_name" />
+                    <outputColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[email]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[email]"
+                      name="email" />
+                    <outputColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[country]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[country]"
+                      name="country" />
+                    <outputColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load stg table\Customer Stg"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Customer Stg"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[STG].[Customer]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load stg table\Customer Stg.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].Columns[create_timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="create_timestamp"
+                      externalMetadataColumnId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      lineageId="Package\Load stg table\Add Time Stamp.Outputs[Derived Column Output].Columns[create_timestamp]" />
+                    <inputColumn
+                      refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].Columns[first_name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="first_name"
+                      externalMetadataColumnId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[first_name]" />
+                    <inputColumn
+                      refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].Columns[last_name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="last_name"
+                      externalMetadataColumnId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[last_name]" />
+                    <inputColumn
+                      refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].Columns[email]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="email"
+                      externalMetadataColumnId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_email]"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[email]" />
+                    <inputColumn
+                      refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].Columns[country]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="country"
+                      externalMetadataColumnId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      lineageId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output].Columns[country]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      dataType="i4"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].ExternalColumns[first_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="first_name" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].ExternalColumns[last_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="last_name" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].ExternalColumns[customer_email]"
+                      dataType="wstr"
+                      length="255"
+                      name="customer_email" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      dataType="wstr"
+                      length="100"
+                      name="country" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input].ExternalColumns[create_timestamp]"
+                      dataType="dbTimeStamp"
+                      name="create_timestamp" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load stg table\Customer Stg.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load stg table\Customer Stg.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load stg table\Customer Stg.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load stg table\Customer Stg.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load stg table\Customer Stg.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load stg table.Paths[Derived Column Output]"
+              endId="Package\Load stg table\Customer Stg.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load stg table\Add Time Stamp.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load stg table.Paths[OLE DB Source Output]"
+              endId="Package\Load stg table\Add Time Stamp.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load stg table\Customer src.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Stg table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A369E613-0C8E-4600-9734-B84395C59414}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Stg table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DDA6D077-DCA7-4E00-8A28-562564BE29DE}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE STG.Customer" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update last extract date"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{F897F3B5-46BA-4A54-9D7D-272812CF3754}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update last extract date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DDA6D077-DCA7-4E00-8A28-562564BE29DE}"
+          SQLTask:SqlStatementSource="UPDATE [STG].[Conf_Table]&#xA;SET [last_extract_date] = GETDATE()&#xA;WHERE [table_name] = 'Customer';&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CCC763F6-8186-4E09-B1D1-1782C3DAC7B2}"
+      DTS:From="Package\Truncate Stg table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get Last Extract date" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{06C8C5D3-8523-48B7-B18C-32D8A30AF7E2}"
+      DTS:From="Package\Load stg table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\load customer_dim" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{2899F4BE-38BA-4DBD-9C37-895AE4EC939A}"
+      DTS:From="Package\Get Last Extract date"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load stg table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{1CDABDC1-7E10-47B4-8944-2DF4BB851C26}"
+      DTS:From="Package\load customer_dim"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Update last extract date" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Get Last Extract date"
+          TopLeft="242.64285758381,108.147058759851" />
+        <NodeLayout
+          Size="191.2,41.6"
+          Id="Package\Update last extract date"
+          TopLeft="240.714286226703,345.317646779981" />
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\load customer_dim"
+          TopLeft="247.857143384766,263.823529180513" />
+        <NodeLayout
+          Size="144.8,41.6"
+          Id="Package\Load stg table"
+          TopLeft="258.571429121859,192.705882184027" />
+        <NodeLayout
+          Size="165.6,41.6"
+          Id="Package\Truncate Stg table"
+          TopLeft="245.714286237347,35.1764705574018" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="329.978571910579,76.7764705574018">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.3705882024492"
+              Start="0,0"
+              End="0,23.8705882024492">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.8705882024492" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="331.414286253313,234.305882184027">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.517646996486"
+              Start="0,0"
+              End="0,22.017646996486">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.017646996486" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="331.207143352835,149.747058759851">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.958823424176"
+              Start="0,0"
+              End="0,35.458823424176">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.458823424176" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="334.085714805734,305.423529180513">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.8941175994684"
+              Start="0,0"
+              End="0,32.3941175994684">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.3941175994684" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\load customer_dim">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\load customer_dim\Lookup"
+          TopLeft="335.538456529379,104.615383056494" />
+        <NodeLayout
+          Size="174.4,41.6"
+          Id="Package\load customer_dim\OLE DB Command 1"
+          TopLeft="453.999993225703,269.999996343484" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\load customer_dim\OLE DB Destination"
+          TopLeft="273.999995907912,507.384611235215" />
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\load customer_dim\Union All"
+          TopLeft="309.384610765255,352.461536547312" />
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\load customer_dim\Conditional Split 1"
+          TopLeft="455.53845474124,185.999997741901" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\load customer_dim\Derived Column"
+          TopLeft="303.192303256347,433.038457285899" />
+        <EdgeLayout
+          Id="Package\load customer_dim.Paths[OLE DB Command Output]"
+          TopLeft="541.199993225703,311.599996343484">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-171.815382460447,40.8615402038282"
+              Start="0,0"
+              End="-171.815382460447,33.3615402038282">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.4307701019141" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.4307701019141"
+                    Point2="0,20.4307701019141"
+                    Point3="-4,20.4307701019141" />
+                  <mssgle:LineSegment
+                    End="-167.815382460447,20.4307701019141" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-167.815382460447,20.4307701019141"
+                    Point2="-171.815382460447,20.4307701019141"
+                    Point3="-171.815382460447,24.4307701019141" />
+                  <mssgle:LineSegment
+                    End="-171.815382460447,33.3615402038282" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\load customer_dim.Paths[Lookup No Match Output]"
+          TopLeft="374.471789862712,146.215383056494">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-23.753845764124,206.246153490818"
+              Start="0,0"
+              End="-23.753845764124,198.746153490818">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,99.2291340749381" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,99.2291340749381"
+                    Point2="0,103.229134074938"
+                    Point3="-4,103.229134074938" />
+                  <mssgle:LineSegment
+                    End="-19.753845764124,103.229134074938" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19.753845764124,103.229134074938"
+                    Point2="-23.753845764124,103.229134074938"
+                    Point3="-23.753845764124,107.229134074938" />
+                  <mssgle:LineSegment
+                    End="-23.753845764124,198.746153490818" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-67.683309600812,108.229134074938,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\load customer_dim.Paths[Lookup Match Output]"
+          TopLeft="409.405123196046,146.215383056494">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="127.733331545194,39.784614685407"
+              Start="0,0"
+              End="127.733331545194,32.284614685407">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.2477027806138" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.2477027806138"
+                    Point2="0,16.2477027806138"
+                    Point3="4,16.2477027806138" />
+                  <mssgle:LineSegment
+                    End="123.733331545194,16.2477027806138" />
+                  <mssgle:CubicBezierSegment
+                    Point1="123.733331545194,16.2477027806138"
+                    Point2="127.733331545194,16.2477027806138"
+                    Point3="127.733331545194,20.2477027806138" />
+                  <mssgle:LineSegment
+                    End="127.733331545194,32.284614685407" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="15.6752790538472,21.2477027806138,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\load customer_dim.Paths[Derived Column Output]"
+          TopLeft="379.592303256347,474.638457285899">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20.392307348435,32.746153949316"
+              Start="0,0"
+              End="-20.392307348435,25.246153949316">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.373076974658" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.373076974658"
+                    Point2="0,16.373076974658"
+                    Point3="-4,16.373076974658" />
+                  <mssgle:LineSegment
+                    End="-16.392307348435,16.373076974658" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16.392307348435,16.373076974658"
+                    Point2="-20.392307348435,16.373076974658"
+                    Point3="-20.392307348435,20.373076974658" />
+                  <mssgle:LineSegment
+                    End="-20.392307348435,25.246153949316" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\load customer_dim.Paths[changed]"
+          TopLeft="539.169223983471,227.599997741901">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.3999986015832"
+              Start="0,0"
+              End="0,34.8999986015832">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.8999986015832" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-19.19259765625,11.6184563320416,38.3851953125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\load customer_dim\OLE DB Source"
+          TopLeft="330.71428641829,34.7411764618744" />
+        <EdgeLayout
+          Id="Package\load customer_dim.Paths[OLE DB Source Output]"
+          TopLeft="405.51428641829,76.3411764618744">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13.5758298889107,28.2742065946196"
+              Start="0,0"
+              End="-13.5758298889107,20.7742065946196">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.1371032973098" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.1371032973098"
+                    Point2="0,14.1371032973098"
+                    Point3="-4,14.1371032973098" />
+                  <mssgle:LineSegment
+                    End="-9.57582988891073,14.1371032973098" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.57582988891073,14.1371032973098"
+                    Point2="-13.5758298889107,14.1371032973098"
+                    Point3="-13.5758298889107,18.1371032973098" />
+                  <mssgle:LineSegment
+                    End="-13.5758298889107,20.7742065946196" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\load customer_dim.Paths[Union All Output 1]"
+          TopLeft="369.384610765255,394.061536547312">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.207692491092,38.976920738587"
+              Start="0,0"
+              End="10.207692491092,31.476920738587">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.4884603692935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.4884603692935"
+                    Point2="0,19.4884603692935"
+                    Point3="4,19.4884603692935" />
+                  <mssgle:LineSegment
+                    End="6.20769249109202,19.4884603692935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.20769249109202,19.4884603692935"
+                    Point2="10.207692491092,19.4884603692935"
+                    Point3="10.207692491092,23.4884603692935" />
+                  <mssgle:LineSegment
+                    End="10.207692491092,31.476920738587" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\load customer_dim\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\load customer_dim\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load stg table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="142.4,41.6"
+          Id="Package\Load stg table\Customer Stg"
+          TopLeft="284.285714890884,266.117646825561" />
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\Load stg table\Customer src"
+          TopLeft="286.428572038303,55.7176470534612" />
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\Load stg table\Add Time Stamp"
+          TopLeft="289.285714901528,196.52941159244" />
+        <EdgeLayout
+          Id="Package\Load stg table.Paths[OLE DB Source Output]"
+          TopLeft="356.428572038303,97.3176470534612">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.2571428632251,99.211764538979"
+              Start="0,0"
+              End="11.2571428632251,91.711764538979">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.6058822694895" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.6058822694895"
+                    Point2="0,49.6058822694895"
+                    Point3="4,49.6058822694895" />
+                  <mssgle:LineSegment
+                    End="7.25714286322511,49.6058822694895" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.25714286322511,49.6058822694895"
+                    Point2="11.2571428632251,49.6058822694895"
+                    Point3="11.2571428632251,53.6058822694895" />
+                  <mssgle:LineSegment
+                    End="11.2571428632251,91.711764538979" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load stg table.Paths[Derived Column Output]"
+          TopLeft="367.685714901528,238.12941159244">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12.2000000106441,27.988235233121"
+              Start="0,0"
+              End="-12.2000000106441,20.488235233121">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.9941176165605" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.9941176165605"
+                    Point2="0,13.9941176165605"
+                    Point3="-4,13.9941176165605" />
+                  <mssgle:LineSegment
+                    End="-8.20000001064409,13.9941176165605" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8.20000001064409,13.9941176165605"
+                    Point2="-12.2000000106441,13.9941176165605"
+                    Point3="-12.2000000106441,17.9941176165605" />
+                  <mssgle:LineSegment
+                    End="-12.2000000106441,20.488235233121" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load stg table\Customer Stg">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load stg table\Customer src">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\load customer_dim\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
